@@ -2,6 +2,7 @@ package com.backend.api;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.backend.api.models.Categoria;
+import com.backend.api.models.Cidade;
+import com.backend.api.models.Estado;
 import com.backend.api.models.Produto;
 import com.backend.api.repositories.CategoriaRepository;
+import com.backend.api.repositories.CidadeRepository;
+import com.backend.api.repositories.EstadoRepository;
 import com.backend.api.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -22,6 +27,12 @@ public class JavaBackendApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JavaBackendApplication.class, args);
@@ -66,5 +77,32 @@ public class JavaBackendApplication implements CommandLineRunner{
 		
 		categoriaRepository.saveAll(categorias);
 		produtoRepository.saveAll(produtos);
+			
+		
+		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est2 = new Estado(null, "Sao Paulo");
+		
+		List<Estado> estados = new ArrayList<>();
+		estados.add(est1);
+		estados.add(est2);
+		
+		Cidade cd1 = new Cidade(null, "Uberlandia", est1);
+		Cidade cd2 = new Cidade(null, "Sao Paulo", est2);
+		Cidade cd3 = new Cidade(null, "Campinas", est2);
+		
+		List<Cidade> cidades = new ArrayList<>();
+		cidades.add(cd1);
+		cidades.add(cd2);
+		cidades.add(cd3);
+		
+		est1.getCidades().add(cd1);
+		est2.getCidades().addAll(cidades);
+		
+;
+		
+		estadoRepository.saveAll(estados);
+		
+		cidadeRepository.saveAll(cidades);
+		
 	}
 }
