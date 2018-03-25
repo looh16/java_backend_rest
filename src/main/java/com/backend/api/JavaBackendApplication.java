@@ -12,10 +12,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.backend.api.models.Categoria;
 import com.backend.api.models.Cidade;
+import com.backend.api.models.Cliente;
+import com.backend.api.models.Endereco;
 import com.backend.api.models.Estado;
 import com.backend.api.models.Produto;
+import com.backend.api.models.enums.TipoCliente;
 import com.backend.api.repositories.CategoriaRepository;
 import com.backend.api.repositories.CidadeRepository;
+import com.backend.api.repositories.ClienteRepository;
+import com.backend.api.repositories.EnderecoRepository;
 import com.backend.api.repositories.EstadoRepository;
 import com.backend.api.repositories.ProdutoRepository;
 
@@ -33,6 +38,12 @@ public class JavaBackendApplication implements CommandLineRunner{
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JavaBackendApplication.class, args);
@@ -98,11 +109,26 @@ public class JavaBackendApplication implements CommandLineRunner{
 		est1.getCidades().add(cd1);
 		est2.getCidades().addAll(cidades);
 		
-;
-		
 		estadoRepository.saveAll(estados);
-		
 		cidadeRepository.saveAll(cidades);
+		
+		Cliente cli1 = new Cliente(null, "Maria Jose", "maria@gmail.com", "550159263565", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().add("9484564545");
+		cli1.getTelefones().add("5545465482");
+		
+		Endereco e1 = new Endereco(null, "Rua flores", "656", "apto 546", "jardim", "646464664", cli1, cd1);
+		Endereco e2 = new Endereco(null, "Av.Matos", "568", "sala 111", "centro", "659874133", cli1, cd2);
+		
+		cli1.getEnderecos().add(e1);
+		cli1.getEnderecos().add(e2);
+		
+		List<Endereco> enderecos = new ArrayList<>();
+		enderecos.add(e1);
+		enderecos.add(e2);
+		
+		clienteRepository.save(cli1);
+		enderecoRepository.saveAll(enderecos);
+
 		
 	}
 }
