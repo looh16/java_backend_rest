@@ -13,6 +13,7 @@ import com.backend.api.models.Cidade;
 import com.backend.api.models.Cliente;
 import com.backend.api.models.Endereco;
 import com.backend.api.models.Estado;
+import com.backend.api.models.ItemPedido;
 import com.backend.api.models.Pagamento;
 import com.backend.api.models.PagamentoComBoleto;
 import com.backend.api.models.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.backend.api.repositories.CidadeRepository;
 import com.backend.api.repositories.ClienteRepository;
 import com.backend.api.repositories.EnderecoRepository;
 import com.backend.api.repositories.EstadoRepository;
+import com.backend.api.repositories.ItemPedidoRepository;
 import com.backend.api.repositories.PagamentoRepository;
 import com.backend.api.repositories.PedidoRepository;
 import com.backend.api.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class JavaBackendApplication implements CommandLineRunner{
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JavaBackendApplication.class, args);
@@ -164,6 +169,27 @@ public class JavaBackendApplication implements CommandLineRunner{
 		pedidoRepository.saveAll(pedidos);
 		pagamentoRepository.saveAll(pagamentos);
 		
+		ItemPedido ip1 = new ItemPedido(1.2, 200.00, 6, ped1, p1);
+		ItemPedido ip2 = new ItemPedido(1.3, 400.00, 1, ped1, p3);
+		ItemPedido ip3 = new ItemPedido(1.5, 800.00, 7, ped2, p2);
 		
+		List<ItemPedido> itemPedidos = new ArrayList<>();
+		itemPedidos.add(ip1);
+		itemPedidos.add(ip2);
+		
+		List<ItemPedido> itemSalvarNaBase = new ArrayList<>();
+		itemSalvarNaBase.add(ip1);
+		itemSalvarNaBase.add(ip2);
+		itemSalvarNaBase.add(ip3);
+		
+		
+		ped1.getItens().addAll(itemPedidos);
+		ped1.getItens().add(ip3);
+		
+		p1.getItens().add(ip1);
+		p2.getItens().add(ip3);
+		p3.getItens().add(ip2);
+		
+		itemPedidoRepository.saveAll(itemSalvarNaBase);
 	}
 }
