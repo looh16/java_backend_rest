@@ -70,6 +70,18 @@ public class JavaBackendApplication implements CommandLineRunner{
 
 		Categoria cat1 = new Categoria(null, "informatica");
 		Categoria cat2 = new Categoria(null, "Fisica");
+		Categoria cat3 = new Categoria(null, "mesa");
+		Categoria cat4 = new Categoria(null, "fogao");
+		Categoria cat5 = new Categoria(null, "cadeira");
+		Categoria cat6 = new Categoria(null, "panela");
+		Categoria cat7 = new Categoria(null, "papel");
+		Categoria cat8 = new Categoria(null, "lapis");
+		Categoria cat9 = new Categoria(null, "cabo");
+		Categoria cat10 = new Categoria(null, "cadela");
+		Categoria cat11 = new Categoria(null, "cao");
+		Categoria cat12 = new Categoria(null, "pau");
+		Categoria cat13 = new Categoria(null, "garrafa");
+		Categoria cat14 = new Categoria(null, "tampa");
 		
 		Produto p1 = new Produto(null, "computador", 200.000);
 		Produto p2 = new Produto(null, "impressora", 40.000);
@@ -96,6 +108,19 @@ public class JavaBackendApplication implements CommandLineRunner{
 		List<Categoria> categorias = new ArrayList<>();
 		categorias.add(cat1);
 		categorias.add(cat2);
+		categorias.add(cat3);
+		categorias.add(cat4);
+		categorias.add(cat5);
+		categorias.add(cat6);
+		categorias.add(cat7);
+		categorias.add(cat8);
+		categorias.add(cat9);
+		categorias.add(cat10);
+		categorias.add(cat11);
+		categorias.add(cat12);
+		categorias.add(cat13);
+		categorias.add(cat14);
+		
 		
 		List<Produto> produtos = new ArrayList<>();
 		produtos.add(p1);
