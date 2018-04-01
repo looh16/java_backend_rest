@@ -3,10 +3,12 @@ package com.backend.api.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.backend.api.models.Categoria;
 import com.backend.api.repositories.CategoriaRepository;
+import com.backend.api.services.exceptions.DataIntegrityException;
 import com.backend.api.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -32,5 +34,20 @@ public class CategoriaService {
 		find(obj.getId());
 		
 		return repo.save(obj);
+	}
+
+	public void delete(Integer id) {
+		
+		find(id);
+		
+		try {
+			
+		repo.deleteById(id);
+		
+			} 
+			catch(DataIntegrityViolationException e) {
+				
+				throw new DataIntegrityException("Nao e possivel excluir uma categoria que tem produtos");
+			}
 	}
 }
