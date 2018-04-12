@@ -86,6 +86,14 @@ public class JavaBackendApplication implements CommandLineRunner{
 		Produto p1 = new Produto(null, "computador", 200.000);
 		Produto p2 = new Produto(null, "impressora", 40.000);
 		Produto p3 = new Produto(null, "mouse", 3.000);
+		Produto p4 = new Produto(null, "cadeira", 200.000);
+		Produto p5 = new Produto(null, "papel", 40.000);
+		Produto p6 = new Produto(null, "fogao", 3.000);
+		Produto p7 = new Produto(null, "cama", 200.000);
+		Produto p8 = new Produto(null, "impressora", 40.000);
+		Produto p9 = new Produto(null, "lapis", 3.000);
+		Produto p10 = new Produto(null, "coluna", 200.000);
+		Produto p11= new Produto(null, "livro", 40.000);	
 		
 		
 		List<Produto> cat1_p = new ArrayList<>();
@@ -94,16 +102,54 @@ public class JavaBackendApplication implements CommandLineRunner{
 		cat1_p.add(p3);
 		
 		List<Produto> cat2_p = new ArrayList<>();
-		cat1_p.add(p2);
-
+		cat2_p.add(p2);
+		cat2_p.add(p4);
 		
+		List<Produto> cat3_p = new ArrayList<>();
+		cat3_p.add(p5);
+		cat3_p.add(p6);
+		
+		List<Produto> cat4_p = new ArrayList<>();
+		cat4_p.add(p1);
+		cat4_p.add(p2);
+		cat4_p.add(p3);
+		cat4_p.add(p7);
+		
+		List<Produto> cat5_p = new ArrayList<>();
+		cat5_p.add(p8);
+		
+		List<Produto> cat6_p = new ArrayList<>();
+		cat6_p.add(p9);
+		cat6_p.add(p10);
+		
+		List<Produto> cat7_p = new ArrayList<>();
+		cat7_p.add(p11);
+
 		cat1.getProdutos().addAll(cat1_p);
 		cat2.getProdutos().addAll(cat2_p);
+		cat3.getProdutos().addAll(cat3_p);
+		cat4.getProdutos().addAll(cat4_p);
+		cat5.getProdutos().addAll(cat5_p);
+		cat6.getProdutos().addAll(cat6_p);
+		cat7.getProdutos().addAll(cat7_p);
+		
 		
 		p1.getCategorias().add(cat1);
+		p1.getCategorias().add(cat4);
 		p2.getCategorias().add(cat1);
 		p2.getCategorias().add(cat2);
+		p2.getCategorias().add(cat4);
 		p3.getCategorias().add(cat1);
+		p3.getCategorias().add(cat4);
+		p4.getCategorias().add(cat2);
+		p5.getCategorias().add(cat3);
+		p3.getCategorias().add(cat3);
+		p7.getCategorias().add(cat4);
+		p8.getCategorias().add(cat5);
+		p9.getCategorias().add(cat6);
+		p10.getCategorias().add(cat6);
+		p11.getCategorias().add(cat7);
+		
 		
 		List<Categoria> categorias = new ArrayList<>();
 		categorias.add(cat1);
@@ -126,6 +172,14 @@ public class JavaBackendApplication implements CommandLineRunner{
 		produtos.add(p1);
 		produtos.add(p2);
 		produtos.add(p3);
+		produtos.add(p4);
+		produtos.add(p5);
+		produtos.add(p6);
+		produtos.add(p7);
+		produtos.add(p8);
+		produtos.add(p9);
+		produtos.add(p10);
+		produtos.add(p11);		
 		
 		categoriaRepository.saveAll(categorias);
 		produtoRepository.saveAll(produtos);
