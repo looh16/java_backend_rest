@@ -1,13 +1,13 @@
 package com.backend.api.models.enums;
 
-public enum estadoPagamento {
+public enum EstadoPagamento {
 
 	PENDENTE (1, "pendente"), QUITADO(2,"quitado"), CANCELADO(3, "cancelado");
 	
 	private int codigo;
 	private String descricao;
 	
-	private estadoPagamento(int codigo, String descricao) {
+	private EstadoPagamento(int codigo, String descricao) {
 		
 		this.codigo = codigo;
 		this.descricao = descricao;
@@ -21,14 +21,14 @@ public enum estadoPagamento {
 		return descricao;
 	}
 	
-	public static estadoPagamento toEnum(Integer cod) {
+	public static EstadoPagamento toEnum(Integer cod) {
 		
 		if(cod == null) {
 			
 			return null;
 		}
 		
-		for (estadoPagamento x : estadoPagamento.values()) {
+		for (EstadoPagamento x : EstadoPagamento.values()) {
 			
 			if(cod.equals(x.getCodigo())) {
 				

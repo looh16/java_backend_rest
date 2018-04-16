@@ -20,7 +20,7 @@ import com.backend.api.models.PagamentoComCartao;
 import com.backend.api.models.Pedido;
 import com.backend.api.models.Produto;
 import com.backend.api.models.enums.TipoCliente;
-import com.backend.api.models.enums.estadoPagamento;
+import com.backend.api.models.enums.EstadoPagamento;
 import com.backend.api.repositories.CategoriaRepository;
 import com.backend.api.repositories.CidadeRepository;
 import com.backend.api.repositories.ClienteRepository;
@@ -233,10 +233,10 @@ public class JavaBackendApplication implements CommandLineRunner{
 		pedidos.add(ped1);
 		pedidos.add(ped2);
 		
-		Pagamento pagto1 = new PagamentoComCartao(null, estadoPagamento.QUITADO, ped1, 6);
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pagto1);
 		
-		Pagamento pagto2 = new PagamentoComBoleto(null, estadoPagamento.PENDENTE, ped2, sdf.parse("30/01/2017 10:32"), null);
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("30/01/2017 10:32"), null);
 		ped2.setPagamento(pagto2);
 		
 		List<Pagamento> pagamentos = new ArrayList<>();

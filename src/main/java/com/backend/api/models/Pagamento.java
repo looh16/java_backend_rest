@@ -11,11 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-import com.backend.api.models.enums.estadoPagamento;
+import com.backend.api.models.enums.EstadoPagamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type") 
 public abstract class Pagamento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -34,7 +36,7 @@ public abstract class Pagamento implements Serializable{
 		
 	}
 
-	public Pagamento(Integer id, estadoPagamento estado, Pedido pedido) {
+	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		
 		this.id = id;
 		this.estado = (estado==null) ? null : estado.getCodigo();
@@ -49,11 +51,11 @@ public abstract class Pagamento implements Serializable{
 		this.id = id;
 	}
 
-	public estadoPagamento getEstado() {
-		return estadoPagamento.toEnum(estado);
+	public EstadoPagamento getEstado() {
+		return EstadoPagamento.toEnum(estado);
 	}
 
-	public void setEstado(estadoPagamento estado) {
+	public void setEstado(EstadoPagamento estado) {
 		this.estado = estado.getCodigo();
 	}
 
