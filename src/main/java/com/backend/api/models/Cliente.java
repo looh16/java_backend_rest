@@ -50,17 +50,21 @@ public class Cliente implements Serializable{
 	@CollectionTable(name="Telefone")
 	private Set<String> telefones = new HashSet<>();
 	
+	@JsonIgnore
+	private String senha;
+	
 	public Cliente() {
 		
 	}
 
-	public Cliente(Integer id, String name, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
+	public Cliente(Integer id, String name, String email, String cpfOuCnpj, TipoCliente tipoCliente, String senha) {
 		super();
 		Id = id;
 		this.name = name;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = (tipoCliente==null) ? null : tipoCliente.getCodigo();
+		this.senha = senha;
 	}
 
 	public Integer getId() {
@@ -125,6 +129,16 @@ public class Cliente implements Serializable{
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+	
+	
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@Override

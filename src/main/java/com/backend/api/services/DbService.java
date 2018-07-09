@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.backend.api.models.Categoria;
@@ -60,6 +61,9 @@ public class DbService {
 	
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 	
 	public void instatieteTestDataBase() throws ParseException {
 		
@@ -202,7 +206,7 @@ public class DbService {
 		estadoRepository.saveAll(estados);
 		cidadeRepository.saveAll(cidades);
 		
-		Cliente cli1 = new Cliente(null, "Maria Jose", "********@gmail.com", "550159263565", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Maria Jose", "********@gmail.com", "550159263565", TipoCliente.PESSOAFISICA, pe.encode("passord"));
 		cli1.getTelefones().add("9484564545");
 		cli1.getTelefones().add("5545465482");
 		
