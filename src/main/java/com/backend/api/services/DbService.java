@@ -21,6 +21,7 @@ import com.backend.api.models.PagamentoComCartao;
 import com.backend.api.models.Pedido;
 import com.backend.api.models.Produto;
 import com.backend.api.models.enums.EstadoPagamento;
+import com.backend.api.models.enums.Perfil;
 import com.backend.api.models.enums.TipoCliente;
 import com.backend.api.repositories.CategoriaRepository;
 import com.backend.api.repositories.CidadeRepository;
@@ -210,17 +211,29 @@ public class DbService {
 		cli1.getTelefones().add("9484564545");
 		cli1.getTelefones().add("5545465482");
 		
+		Cliente cli2 = new Cliente(null, "Maria Jose", "teste@gmail.com", "550159263565", TipoCliente.PESSOAFISICA, pe.encode("passord"));
+		cli2.getTelefones().add("9484564545");
+		cli2.getTelefones().add("5545465482");
+		cli2.addPerfil(Perfil.ADMIN);
+		
 		Endereco e1 = new Endereco(null, "Rua flores", "656", "apto 546", "jardim", "646464664", cli1, cd1);
 		Endereco e2 = new Endereco(null, "Av.Matos", "568", "sala 111", "centro", "659874133", cli1, cd2);
 		
 		cli1.getEnderecos().add(e1);
 		cli1.getEnderecos().add(e2);
 		
+		cli2.getEnderecos().add(e1);
+		cli2.getEnderecos().add(e2);
+		
+		List<Cliente> clientes = new ArrayList<>();
+		clientes.add(cli1);
+		clientes.add(cli2);
+		
 		List<Endereco> enderecos = new ArrayList<>();
 		enderecos.add(e1);
 		enderecos.add(e2);
 		
-		clienteRepository.save(cli1);
+		clienteRepository.saveAll(clientes);
 		enderecoRepository.saveAll(enderecos);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
