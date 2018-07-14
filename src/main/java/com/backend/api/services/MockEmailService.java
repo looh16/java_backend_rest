@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 
+import com.backend.api.models.Cliente;
 import com.backend.api.models.Pedido;
 
 public class MockEmailService extends AbstractEmailService{
@@ -26,6 +27,13 @@ public class MockEmailService extends AbstractEmailService{
 		LOG.info("simulando envio de email HTML...");
 		LOG.info(msg.toString());
 		LOG.info("email enviado...");
+		
+	}
+
+
+	@Override
+	public void sendNewPasswordEmail(Cliente cliente, String newPass) {
+		// TODO Auto-generated method stub
 		
 	}
 

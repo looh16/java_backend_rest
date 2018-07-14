@@ -207,11 +207,11 @@ public class DbService {
 		estadoRepository.saveAll(estados);
 		cidadeRepository.saveAll(cidades);
 		
-		Cliente cli1 = new Cliente(null, "Maria Jose", "********@gmail.com", "550159263565", TipoCliente.PESSOAFISICA, pe.encode("passord"));
+		Cliente cli1 = new Cliente(null, "Maria Jose", "********@gmail.com", "550159263565", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().add("9484564545");
 		cli1.getTelefones().add("5545465482");
 		
-		Cliente cli2 = new Cliente(null, "Maria Jose", "teste@gmail.com", "550159263565", TipoCliente.PESSOAFISICA, pe.encode("passord"));
+		Cliente cli2 = new Cliente(null, "Maria Jose", "teste1@gmail.com", "550159263565", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli2.getTelefones().add("9484564545");
 		cli2.getTelefones().add("5545465482");
 		cli2.addPerfil(Perfil.ADMIN);

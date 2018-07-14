@@ -9,6 +9,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import com.backend.api.models.Cliente;
 import com.backend.api.models.Pedido;
 
 public class SmtpMailService extends AbstractEmailService{
@@ -34,6 +35,12 @@ public class SmtpMailService extends AbstractEmailService{
 		LOG.info("Enviando email HTML...");
 		javaMailSender.send(msg);
 		LOG.info("email enviado...");
+		
+	}
+
+	@Override
+	public void sendNewPasswordEmail(Cliente cliente, String newPass) {
+		// TODO Auto-generated method stub
 		
 	}
 
