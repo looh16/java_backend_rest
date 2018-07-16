@@ -17,9 +17,12 @@ import com.backend.api.dto.ClienteNewDTO;
 import com.backend.api.models.Cidade;
 import com.backend.api.models.Cliente;
 import com.backend.api.models.Endereco;
+import com.backend.api.models.enums.Perfil;
 import com.backend.api.models.enums.TipoCliente;
 import com.backend.api.repositories.ClienteRepository;
 import com.backend.api.repositories.EnderecoRepository;
+import com.backend.api.security.UserSS;
+import com.backend.api.services.exceptions.AuthorizationException;
 import com.backend.api.services.exceptions.DataIntegrityException;
 import com.backend.api.services.exceptions.ObjectNotFoundException;
 
@@ -36,6 +39,11 @@ public class ClienteService {
 	private BCryptPasswordEncoder pe;
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
 		
 		Optional<Cliente> obj = repo.findById(id);
 		
