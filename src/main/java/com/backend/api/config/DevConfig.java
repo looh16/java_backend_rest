@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Profile;
 
 import com.backend.api.services.DbService;
 import com.backend.api.services.EmailService;
-import com.backend.api.services.MockEmailService;
 import com.backend.api.services.SmtpMailService;
 
 @Configuration
